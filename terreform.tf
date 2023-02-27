@@ -98,8 +98,8 @@ resource "aws_security_group" "public-web-sg" {
     }
 }
 
-resource "aws_security_group" "praivate-db-sg" {
-    name = "praivate-db-sg"
+resource "aws_security_group" "private-db-sg" {
+    name = "private-db-sg"
     vpc_id = "${aws_vpc.dev-env.id}"
     ingress {
         from_port = 5432
@@ -107,24 +107,17 @@ resource "aws_security_group" "praivate-db-sg" {
         protocol = "tcp"
         cidr_blocks = ["10.0.1.0/24"]
     }
-
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
     tags = {
       Name = "public-db-sg"
     }
 }
 
 # RDS
-resource "aws_db_subnet_group" "praivate-db" {
-  name       = "praivate-db"
+resource "aws_db_subnet_group" "private-db" {
+  name       = "private-db"
   subnet_ids = ["${aws_subnet.private-db1.id}", "${aws_subnet.private-db2.id}"]
   tags = {
-    Name = "praivate-db"
+    Name = "private-db"
   }
 }
 
@@ -137,8 +130,8 @@ resource "aws_db_instance" "test-db" {
   name                   = "testdb"
   username               = "myuser"
   password               = "mypassword"
-  vpc_security_group_ids = ["${aws_security_group.praivate-db-sg.id}"]
-  db_subnet_group_name   = aws_db_subnet_group.praivate-db.name
+  vpc_security_group_ids = ["${aws_security_group.private-db-sg.id}"]
+  db_subnet_group_name   = aws_db_subnet_group.private-db.name
   skip_final_snapshot    = true
 }
 
@@ -148,4 +141,9 @@ resource "aws_ecr_repository" "fabric-ca" {
   image_scanning_configuration {
     scan_on_push = true
   }
+}
+
+resource "aws_cloudwatch_log_group" "fabric-ca" {
+  name              = "/ecs/project/dev/fabric-ca"
+  retention_in_days = 30
 }

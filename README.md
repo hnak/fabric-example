@@ -20,7 +20,7 @@ terraform apply
 ## Push to ECR(fabric-ca)
 ```bash
 # build fabric-ca docker image
-cd fabric-ca
+cd <fabric-ca direcotry>
 make docker
 # push to ECR
 aws ecr get-login-password | docker login --username AWS --password-stdin https://054911450566.dkr.ecr.ap-northeast-1.amazonaws.com/fabric-ca

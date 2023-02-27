@@ -16,3 +16,14 @@ asdf global terraform <バージョン>
 terraform plan
 terraform apply
 ```
+
+## Push to ECR(fabric-ca)
+```bash
+# build fabric-ca docker image
+cd fabric-ca
+make docker
+# push to ECR
+aws ecr get-login-password | docker login --username AWS --password-stdin https://054911450566.dkr.ecr.ap-northeast-1.amazonaws.com/fabric-ca
+docker tag hyperledger/fabric-ca:latest 054911450566.dkr.ecr.ap-northeast-1.amazonaws.com/fabric-ca:latest
+docker push 054911450566.dkr.ecr.ap-northeast-1.amazonaws.com/fabric-ca:latest
+```

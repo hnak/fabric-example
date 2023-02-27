@@ -141,3 +141,11 @@ resource "aws_db_instance" "test-db" {
   db_subnet_group_name   = aws_db_subnet_group.praivate-db.name
   skip_final_snapshot    = true
 }
+
+resource "aws_ecr_repository" "fabric-ca" {
+  name                 = "fabric-ca"
+  image_tag_mutability = "MUTABLE"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}

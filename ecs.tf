@@ -8,7 +8,7 @@ resource "aws_ecs_task_definition" "fabric-ca" {
   family                   = "fabric-ca-server"
   container_definitions    = jsonencode([{
     name            = "fabric-ca-server"
-    image           = "054911450566.dkr.ecr.ap-northeast-1.amazonaws.com/fabric-ca:latest"
+    image           = var.fabric-ca_repo_url
     portMappings    = [{
       containerPort = 7054
       hostPort      = 7054

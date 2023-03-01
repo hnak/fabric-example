@@ -73,12 +73,12 @@ resource "aws_subnet" "private-db2" {
 resource "aws_security_group" "public-web-sg" {
     name = "public-web-sg"
     vpc_id = "${aws_vpc.dev-env.id}"
-    ingress {
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+    # ingress {
+    #     from_port = 22
+    #     to_port = 22
+    #     protocol = "tcp"
+    #     cidr_blocks = ["0.0.0.0/0"]
+    # }
 
     ingress {
         from_port = 80
@@ -108,7 +108,7 @@ resource "aws_security_group" "private-db-sg" {
         cidr_blocks = ["10.0.1.0/24"]
     }
     tags = {
-      Name = "public-db-sg"
+      Name = "private-db-sg"
     }
 }
 

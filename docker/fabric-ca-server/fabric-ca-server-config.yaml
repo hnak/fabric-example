@@ -153,7 +153,7 @@ registry:
 #############################################################################
 db:
   type: postgres
-  datasource: host=test-db.cqveongbdge0.ap-northeast-1.rds.amazonaws.com port=5432 user=myuser password=mypassword dbname=testdb sslmode=disable
+  datasource: host=test-db.cqveongbdge0.ap-northeast-1.rds.amazonaws.com port=5432 user=myuser password=mypassword dbname=testdb sslmode=require
   tls:
       enabled: false
       certfiles:

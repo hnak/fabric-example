@@ -14,8 +14,12 @@ resource "aws_ecs_task_definition" "fabric-ca" {
       hostPort      = 7054
     }]
     environment     = [{
-      name  = "FABRIC_CA_SERVER_HOME"
-      value = "/etc/hyperledger/fabric-ca-server"
+    #   name  = "FABRIC_CA_SERVER_HOME"
+    #   value = "/etc/hyperledger/fabric-ca-server"
+    # },
+    # {
+      name  = "FABRIC_CA_SERVER_DB_DATASOURCE"
+      value = "host=${aws_db_instance.test-db.address} port=5432 user=myuser password=mypassword dbname=testdb sslmode=require"
     }]
     logConfiguration = {
         logDriver = "awslogs"

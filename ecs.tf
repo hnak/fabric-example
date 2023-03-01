@@ -1,5 +1,18 @@
 variable "fabric-ca_repo_url" {}
 
+resource "aws_ecr_repository" "fabric-ca" {
+  name                 = "fabric-ca"
+  image_tag_mutability = "MUTABLE"
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
+
+resource "aws_cloudwatch_log_group" "fabric-ca" {
+  name              = "/ecs/project/dev/fabric-ca"
+  retention_in_days = 30
+}
+
 resource "aws_ecs_cluster" "fabric-cluster" {
   name = "fabric-cluster"
 }

@@ -1,3 +1,6 @@
+## system architecture
+![system architecture](./system_overview.drawio.svg)
+
 ## SetUp
 
 ### terraform with asdf

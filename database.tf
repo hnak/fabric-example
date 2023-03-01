@@ -21,4 +21,5 @@ resource "aws_db_instance" "test-db" {
   db_subnet_group_name   = aws_db_subnet_group.private-db.name
   skip_final_snapshot    = true
   publicly_accessible    = false
+  deletion_protection    = true # change false if destroy
 }

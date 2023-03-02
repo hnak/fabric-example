@@ -16,22 +16,31 @@ resource "aws_codebuild_project" "fabric-ca-build" {
  
     environment_variable {
       name  = "AWS_DEFAULT_REGION"
-      value = "ap-northeast-1"
+      value = var.aws_default_region
     }
  
     environment_variable {
       name  = "AWS_ACCOUNT_ID"
-      value = "054911450566"
+      value = var.aws_account_id
     }
  
     environment_variable {
       name  = "IMAGE_REPO_NAME"
-      value = "fabric-ca"
+      value = var.image_repo_name
     }
  
     environment_variable {
       name  = "IMAGE_TAG"
-      value = "latest"
+      value = var.image_tag
+    }
+
+    environment_variable {
+      name  = "DOCKERHUB_USER"
+      value = var.dockerhub_user
+    }
+    environment_variable {
+      name  = "DOCKERHUB_PASS"
+      value = var.dockerhub_pass
     }
   }
  
@@ -48,24 +57,3 @@ resource "aws_codebuild_project" "fabric-ca-build" {
   }
   
 }
-
-# resource "aws_codebuild_webhook" "fabric-ca-build" {
-#   project_name = aws_codebuild_project.fabric-ca-build.name
-  
-#   authentication_configuration {
-#     secret_token = var.github_personal_access_token
-#   }
-
-#   filter_group {
-#     filter {
-#       exclude_matched_pattern = false
-#       pattern                 = "PUSH"
-#       type                    = "EVENT"
-#     }
-#     filter {
-#       exclude_matched_pattern = false
-#       pattern                 = "main"
-#       type                    = "HEAD_REF"
-#     }
-#   }
-# }

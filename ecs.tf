@@ -1,8 +1,3 @@
-variable "fabric-ca_repo_url" {}
-variable "db_user" {}
-variable "db_password" {}
-variable "db_name" {}
-
 resource "aws_ecr_repository" "fabric-ca" {
   name                 = "fabric-ca"
   image_tag_mutability = "MUTABLE"

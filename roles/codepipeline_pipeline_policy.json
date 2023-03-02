@@ -19,23 +19,19 @@
         },
         {
             "Action": [
-                "codecommit:CancelUploadArchive",
-                "codecommit:GetBranch",
-                "codecommit:GetCommit",
-                "codecommit:GetUploadArchiveStatus",
-                "codecommit:UploadArchive"
-            ],
-            "Resource": "*",
-            "Effect": "Allow"
-        },
-        {
-            "Action": [
                 "codedeploy:CreateDeployment",
                 "codedeploy:GetApplication",
                 "codedeploy:GetApplicationRevision",
                 "codedeploy:GetDeployment",
                 "codedeploy:GetDeploymentConfig",
                 "codedeploy:RegisterApplicationRevision"
+            ],
+            "Resource": "*",
+            "Effect": "Allow"
+        },
+        {
+            "Action": [
+                "codestar-connections:UseConnection"
             ],
             "Resource": "*",
             "Effect": "Allow"

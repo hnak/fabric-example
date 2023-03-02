@@ -101,7 +101,7 @@ resource "aws_codepipeline_webhook" "webhook" {
   target_pipeline = aws_codepipeline.pipeline.name
  
   authentication_configuration {
-    secret_token = aws_ssm_parameter.github_personal_access_token.value
+    secret_token = var.github_personal_access_token
   }
  
   filter {
@@ -115,7 +115,7 @@ resource "github_repository_webhook" "webhook" {
     url          = aws_codepipeline_webhook.webhook.url
     content_type = "json"
     insecure_ssl = true
-    secret       = aws_ssm_parameter.github_personal_access_token.value
+    secret       = var.github_personal_access_token
   }
   events     = ["push"]
   repository = var.github_repository_name

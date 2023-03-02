@@ -114,7 +114,7 @@ resource "github_repository_webhook" "webhook" {
   configuration {
     url          = aws_codepipeline_webhook.webhook.url
     content_type = "json"
-    insecure_ssl = true
+    insecure_ssl = false
     secret       = var.github_personal_access_token
   }
   events     = ["push"]

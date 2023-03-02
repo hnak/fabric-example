@@ -2,7 +2,9 @@
 ![system architecture](./system_overview.drawio.svg)
 
 ## SetUp
-
+```bash
+cd terraform
+```
 ### terraform with asdf
 ```bash
 asdf plugin add terraform

@@ -4,6 +4,10 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 3.0"
     }
+    github = {
+      source  = "integrations/github"
+      version = "~> 5.0"
+    }
   }
 
   required_version = ">= 1.0.0"
@@ -25,6 +29,7 @@ variable "fabric-ca_repo_url" {}
 variable "db_user" {}
 variable "db_password" {}
 variable "db_name" {}
+variable "github_repository_name" {}
 
 # Provider
 provider "aws" {
@@ -36,4 +41,9 @@ provider "aws" {
       Managed = "terraform"
     }
   }
+}
+
+provider "github" {
+  owner = "hnak"
+  token = var.github_personal_access_token
 }

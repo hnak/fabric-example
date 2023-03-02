@@ -95,7 +95,7 @@ resource "aws_codepipeline" "pipeline" {
 }
  
 resource "aws_codepipeline_webhook" "webhook" {
-  name            = "webhook-fargate-deploy"
+  name            = "webhook-fabric-ca-deploy"
   authentication  = "GITHUB_HMAC"
   target_action   = "Source"
   target_pipeline = aws_codepipeline.pipeline.name
@@ -108,4 +108,15 @@ resource "aws_codepipeline_webhook" "webhook" {
     json_path    = "$.ref"
     match_equals = "refs/heads/{Branch}"
   }
+}
+
+resource "github_repository_webhook" "webhook" {
+  configuration {
+    url          = aws_codepipeline_webhook.webhook.url
+    content_type = "json"
+    insecure_ssl = true
+    secret       = aws_ssm_parameter.github_personal_access_token.value
+  }
+  events     = ["push"]
+  repository = var.github_repository_name
 }

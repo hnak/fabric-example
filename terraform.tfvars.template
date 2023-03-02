@@ -1,3 +1,7 @@
 aws_access_key = ""
 aws_secret_key = ""
 fabric-ca_repo_url = ""
+github_personal_access_token = ""
+db_user = ""
+db_password = ""
+db_name = ""

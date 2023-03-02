@@ -1,4 +1,7 @@
 variable "fabric-ca_repo_url" {}
+variable "db_user" {}
+variable "db_password" {}
+variable "db_name" {}
 
 resource "aws_ecr_repository" "fabric-ca" {
   name                 = "fabric-ca"
@@ -27,12 +30,12 @@ resource "aws_ecs_task_definition" "fabric-ca" {
       hostPort      = 7054
     }]
     environment     = [{
-    #   name  = "FABRIC_CA_SERVER_HOME"
-    #   value = "/etc/hyperledger/fabric-ca-server"
-    # },
-    # {
+      name  = "FABRIC_CA_SERVER_DB_TYPE"
+      value = "postgres"
+    },
+    {
       name  = "FABRIC_CA_SERVER_DB_DATASOURCE"
-      value = "host=${aws_db_instance.test-db.address} port=5432 user=myuser password=mypassword dbname=testdb sslmode=require"
+      value = "host=${aws_db_instance.test-db.address} port=5432 user=${var.db_user} password=${var.db_password} dbname=${var.db_name} sslmode=require"
     }]
     logConfiguration = {
         logDriver = "awslogs"

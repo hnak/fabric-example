@@ -20,13 +20,6 @@ terraform plan
 terraform apply
 ```
 
-## Override config file(fabric-ca)
-```bash
-# Override config
-cp -p docker/fabric-ca-server/Dockerfile <fabric-ca direcotry>/images/fabric-ca/
-cp -p docker/fabric-ca-server/fabric-ca-server-config.yaml <fabric-ca direcotry>/images/fabric-ca/
-```
-
 ## Push to ECR(fabric-ca)
 ```bash
 # build fabric-ca docker image

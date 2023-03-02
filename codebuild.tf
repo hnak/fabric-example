@@ -47,17 +47,6 @@ resource "aws_codebuild_project" "fabric-ca-build" {
     modes = ["LOCAL_SOURCE_CACHE"]
   }
   
-  vpc_config {
-    vpc_id = aws_vpc.dev-env.id
- 
-    subnets = [
-      aws_subnet.public-web.id
-    ]
- 
-    security_group_ids = [
-      aws_security_group.public-web-sg.id,
-    ]
-  }
 }
 
 # resource "aws_codebuild_webhook" "fabric-ca-build" {

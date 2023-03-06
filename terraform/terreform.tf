@@ -29,7 +29,8 @@ variable "fabric-ca_repo_url" {}
 variable "db_user" {}
 variable "db_password" {}
 variable "db_name" {}
-variable "github_repository_name" {}
+variable "github_ca_repo_name" {}
+variable "github_infra_repo_name" {}
 
 # Provider
 provider "aws" {

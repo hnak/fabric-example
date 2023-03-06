@@ -118,5 +118,5 @@ resource "github_repository_webhook" "webhook" {
     secret       = var.github_personal_access_token
   }
   events     = ["push"]
-  repository = var.github_repository_name
+  repository = var.github_ca_repo_name
 }

@@ -72,6 +72,77 @@ resource "aws_codebuild_project" "fabric-infra-build" {
     type                        = "LINUX_CONTAINER"
     image_pull_credentials_type = "CODEBUILD"
     privileged_mode             = true
+
+    environment_variable {
+      name  = "TF_VAR_aws_access_key"
+      value = var.aws_default_region
+    }
+ 
+    environment_variable {
+      name  = "TF_VAR_aws_secret_key"
+      value = var.aws_account_id
+    }
+ 
+    environment_variable {
+      name  = "TF_VAR_fabric-ca_repo_url"
+      value = var.image_repo_name
+    }
+ 
+    environment_variable {
+      name  = "TF_VAR_github_ca_repo_name"
+      value = var.github_ca_repo_name
+    }
+
+    environment_variable {
+      name  = "TF_VAR_github_infra_repo_name"
+      value = var.github_infra_repo_name
+    }
+
+    environment_variable {
+      name  = "TF_VAR_db_user"
+      value = var.db_user
+    }
+
+    environment_variable {
+      name  = "TF_VAR_db_password"
+      value = var.db_password
+    }
+
+    environment_variable {
+      name  = "TF_VAR_db_name"
+      value = var.db_name
+    }
+    
+    environment_variable {
+      name  = "TF_VAR_aws_default_region"
+      value = var.aws_default_region
+    }
+
+    environment_variable {
+      name  = "TF_VAR_aws_account_id"
+      value = var.aws_account_id
+    }
+
+    environment_variable {
+      name  = "TF_VAR_image_repo_name"
+      value = var.image_repo_name
+    }
+
+    environment_variable {
+      name  = "TF_VAR_image_tag"
+      value = var.image_tag
+    }
+
+    environment_variable {
+      name  = "TF_VAR_dockerhub_user"
+      value = var.dockerhub_user
+    }
+
+    environment_variable {
+      name  = "TF_VAR_dockerhub_pass"
+      value = var.dockerhub_pass
+    }
+
   }
  
   source {

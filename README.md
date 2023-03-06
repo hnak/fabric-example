@@ -2,9 +2,10 @@
 ![system architecture](./system_overview.drawio.svg)
 
 ## SetUp
-```bash
-cd terraform
-```
+
+### terraform backend S3 bucket
+- if the terraform backend S3 bucket does not exist, create it.(defaultName = terraform-tfstate-fabric-dev)
+
 ### terraform with asdf
 ```bash
 asdf plugin add terraform
@@ -15,14 +16,18 @@ asdf global terraform <バージョン>
 ### Edit terraform.tfvars
 - Get a secret key from your AWS account administrator.
 
-
 ## Deploy
+### from local
+- It must be run locally the first time to load environment variables.
 ```bash
+terraform init
 terraform plan
 terraform apply
 ```
+### by merge reository (Github)
+- Deployment is automatically performed when this repository is updated
 
-## Push to ECR(fabric-ca)
+### form local push to ECR(fabric-ca)
 ```bash
 # build fabric-ca docker image
 cd <fabric-ca direcotry>

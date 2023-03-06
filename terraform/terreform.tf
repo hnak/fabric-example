@@ -9,6 +9,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+  backend "s3" {
+    bucket = "terraform-tfstate-fabric-dev"
+    region = "ap-northeast-1"
+    key = "terraform.tfstate"
+  }
 
   required_version = ">= 1.0.0"
 }

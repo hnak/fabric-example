@@ -75,17 +75,17 @@ resource "aws_codebuild_project" "fabric-infra-build" {
 
     environment_variable {
       name  = "TF_VAR_aws_access_key"
-      value = var.aws_default_region
+      value = var.aws_access_key
     }
  
     environment_variable {
       name  = "TF_VAR_aws_secret_key"
-      value = var.aws_account_id
+      value = var.aws_secret_key
     }
  
     environment_variable {
       name  = "TF_VAR_fabric-ca_repo_url"
-      value = var.image_repo_name
+      value = var.fabric-ca_repo_url
     }
  
     environment_variable {

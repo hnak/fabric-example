@@ -99,6 +99,11 @@ resource "aws_codebuild_project" "fabric-infra-build" {
     }
 
     environment_variable {
+      name  = "TF_VAR_github_personal_access_token"
+      value = var.github_personal_access_token
+    }
+
+    environment_variable {
       name  = "TF_VAR_db_user"
       value = var.db_user
     }
@@ -112,7 +117,7 @@ resource "aws_codebuild_project" "fabric-infra-build" {
       name  = "TF_VAR_db_name"
       value = var.db_name
     }
-    
+
     environment_variable {
       name  = "TF_VAR_aws_default_region"
       value = var.aws_default_region
